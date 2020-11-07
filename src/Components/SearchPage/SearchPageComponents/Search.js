@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Unsplash, { toJson } from "unsplash-js";
+import SearchIcon from '@material-ui/icons/Search';
 export class Search extends Component {
   constructor(props) {
     super(props);
@@ -32,6 +33,16 @@ export class Search extends Component {
         this.setState({
           tags: [...array],
         });
+        if(!this.state.tags.length){
+          this.setState({
+            noTags: true,
+          });
+        }
+        else{
+          this.setState({
+            noTags: false,
+          });
+        }
       });
   }
   filterTags(e) {
@@ -43,19 +54,25 @@ export class Search extends Component {
         if (this.state.searchQuery.length >= 3) {
           this.collectTags();
         }
+        else{
+          this.setState({
+            tags: [],
+          });
+        }
       }
     );
   }
   render() {
     return (
-      <section>
-        <input onChange={(e) => this.filterTags(e.target.value)} />
-        <ul>
+      <section className="search">
+        <input className="search__input" onChange={(e) => this.filterTags(e.target.value)} /><SearchIcon className="search__icon"/>
+        <ul className="search__suggest">
         {this.state.tags.slice(0, 5).map((value, index) => {
         return <li key={index} className="search__suggest__option">{value}</li>
       })}
 
         </ul>
+        {this.state.noTags ? <div className="search__none">No results</div> : null}
       </section>
     );
   }

@@ -1,7 +1,7 @@
 import "./App.css";
-import {Search} from "./Components/Search/Search"
+import {SearchPage} from "./Components/SearchPage/SearchPage"
 function App() {
-  return <div className="App"><Search/></div>;
+  return <div className="App"><SearchPage/></div>;
 }
 
 export default App;
