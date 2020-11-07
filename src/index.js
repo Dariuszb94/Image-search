@@ -2,11 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from "react-redux";
+import { HashRouter as BrowserRouter, Route } from "react-router-dom";
+import store from './store';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+  <BrowserRouter>
+    <Route path="/" component={App} />
+  </BrowserRouter>
+</Provider>,
   document.getElementById('root')
 );
 

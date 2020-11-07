@@ -1,0 +1,2 @@
+export const UPDATE_IMAGES= 'UPDATE_IMAGES';
+export const CHANGE_QUERY = 'CHANGE_QUERY';

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Search } from "./SearchPageComponents/Search";
+import  Search  from "./SearchPageComponents/Search";
 export class SearchPage extends Component {
   constructor(props) {
     super(props);

@@ -1,13 +1,23 @@
 import React, { Component } from "react";
 import Unsplash, { toJson } from "unsplash-js";
 import SearchIcon from '@material-ui/icons/Search';
-export class Search extends Component {
+import { connect } from 'react-redux';
+import  {updateImages}from '../../../actions/updateImages';
+import  {changeQuery}from '../../../actions/changeQuery';
+import {NavLink} from "react-router-dom";
+import {withRouter} from "react-router-dom"
+import {compose } from 'redux'
+class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchQuery: "",
       tags: []
     };
+    this.handleEnter = this.handleEnter.bind(this);
+  }
+  componentDidUpdate(){
+    this.props.changeQuery(this.state.searchQuery);
   }
   collectTags() {
     const unsplash = new Unsplash({
@@ -17,6 +27,8 @@ export class Search extends Component {
       .photos(this.state.searchQuery, 1, 30)
       .then(toJson)
       .then((json) => {
+        
+        this.props.updateImages(json.results);
         let array = new Set();
         for (let i = 0; i < json.results.length; i++) {
           if(  json.results[i].description?.includes(this.state.searchQuery))
@@ -45,6 +57,10 @@ export class Search extends Component {
         }
       });
   }
+  handleEnter(){
+    this.props.history.push("/ResultsPage")//go to main
+    console.log(this.props.history)
+  }
   filterTags(e) {
     this.setState(
       {
@@ -65,10 +81,10 @@ export class Search extends Component {
   render() {
     return (
       <section className="search">
-        <input className="search__input" onChange={(e) => this.filterTags(e.target.value)} /><SearchIcon className="search__icon"/>
+        <input className="search__input" placeholder="type keyword (min 3 chars)" onChange={(e) => this.filterTags(e.target.value)} onKeyPress={()=>{this.handleEnter()}} /><NavLink to="/ResultsPage" activeClassName="active"><SearchIcon className="search__icon"/></NavLink>
         <ul className="search__suggest">
         {this.state.tags.slice(0, 5).map((value, index) => {
-        return <li key={index} className="search__suggest__option">{value}</li>
+        return <li key={index} className="search__suggest__option"><NavLink to="/ResultsPage" activeClassName="active">{value}</NavLink></li>
       })}
 
         </ul>
@@ -77,3 +93,12 @@ export class Search extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  images: state.images.images,
+  query: state.query.query,
+  });
+
+  export default compose(
+    withRouter,
+    connect(mapStateToProps,{updateImages, changeQuery})
+  )(Search);

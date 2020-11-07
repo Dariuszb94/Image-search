@@ -42,15 +42,22 @@ font-size: 64px;
     position: absolute;
     top: 2px;
     right: 0;
+    cursor: pointer;
 }
 .search{
     position: relative;
     
 }
 .search__suggest{
-    width: 328px;
+    width: 324px;
+    margin-left: 2px;
 }
 
 .search__none{
     color: white;
+}
+.results{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
