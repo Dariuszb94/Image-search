@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Search from "../SearchPage/SearchPageComponents/Search";
+import {Result} from "./ResultsComponents/Result";
+
+
 import { connect } from "react-redux";
 import { updateImages } from "../../actions/updateImages";
 import { changeQuery } from "../../actions/changeQuery";
@@ -9,23 +12,32 @@ class ResultsPage extends Component {
     this.state = {};
   }
   componentDidUpdate() {
-console.log(this.props.tags);
-}
+
+  }
   render() {
     return (
       <section className="results">
         <Search />
         <header className="results__header">{this.props.query}</header>
         <ul className="results__tags">
-{this.props.tags ? this.props.tags.map((value, index) => {  return (
-          <li
-            key={index}
-className="results__tag"
-          >
-            {value}
-          </li>
-        );}) : null}
- 
+          {this.props.tags
+            ? this.props.tags.slice(0, 10).map((value, index) => {
+                return (
+                  <li key={index} className="results__tag">
+                    {value}
+                  </li>
+                );
+              })
+            : null}
+        </ul>
+        <ul className="results__list">
+        {this.props.images
+            ? this.props.images.slice(0, 10).map((value, index) => {
+                return (
+                  <Result key={index} imageData={value}/>
+                );
+              })
+            : null}
         </ul>
       </section>
     );

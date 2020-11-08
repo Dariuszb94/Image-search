@@ -14,6 +14,7 @@ class Search extends Component {
     this.state = {
       searchQuery: "",
       tags: [],
+      ready:0
     };
     this.handleEnter = this.handleEnter.bind(this);
     this.changeQuery = this.changeQuery.bind(this);
@@ -22,6 +23,9 @@ class Search extends Component {
     if (this.state.searchQuery.length > 2) {
       this.props.changeQuery(this.state.searchQuery);
       this.props.history.push("/ResultsPage");
+      this.setState({
+        tags: [],
+      });
     }
   }
   collectTags() {
@@ -36,14 +40,15 @@ class Search extends Component {
         let array = new Set();
         let arrayResults = new Set();
         for (let i = 0; i < json.results.length; i++) {
-          if (json.results[i].description?.includes(this.state.searchQuery))
+          if (json.results[i].description?.includes(this.state.searchQuery) && json.results[i].description.length<30)
             array.add(json.results[i].description);
 
           if (
-            json.results[i].alt_description?.includes(this.state.searchQuery)
+            json.results[i].alt_description?.includes(this.state.searchQuery) && json.results[i].alt_description.length<30
           ) {
-          }
           array.add(json.results[i].alt_description);
+
+          }
 
           for (let j = 0; j < json.results[i].tags.length; j++) {
           if (
@@ -61,6 +66,7 @@ class Search extends Component {
         this.setState({
           tags: [...array],
         });
+    
         this.props.updateTags([...arrayResults]);
         if (!this.state.tags.length) {
           this.setState({
@@ -86,7 +92,7 @@ class Search extends Component {
       },
       () => {
         if (this.state.searchQuery.length >= 3) {
-          this.collectTags();
+          this.collectTags(this.state.ready);
         } else {
           this.setState({
             tags: [],
@@ -116,9 +122,6 @@ class Search extends Component {
               <li
                 key={index}
                 className="search__suggest__option"
-                onClick={() => {
-                  this.changeQuery();
-                }}
                 onClick={() => {
                   this.changeQuery();
                 }}
