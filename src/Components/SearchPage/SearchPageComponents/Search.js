@@ -141,8 +141,6 @@ class Search extends Component {
   render() {
     return (
       <section className="search">
-        <div className="test">{this.state.tags.length}</div>
-      
         <input
           className="search__input"
           placeholder="type keyword (min 3 chars)"
