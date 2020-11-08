@@ -40,7 +40,11 @@ export class Result extends Component {
           this.showModal();
         }}
       >
-        <img src={this.props.imageData.urls.small} className="result__img" alt={this.props.imageData.description}/>
+        <img
+          src={this.props.imageData.urls.small}
+          className="result__img"
+          alt={this.props.imageData.description}
+        />
         <ul className="result__tags">
           {this.props.imageData
             ? this.props.imageData.tags.map((value, index) => {
@@ -98,5 +102,3 @@ export class Result extends Component {
     );
   }
 }
-
-

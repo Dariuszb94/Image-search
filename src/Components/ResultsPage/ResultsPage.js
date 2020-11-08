@@ -25,7 +25,7 @@ class ResultsPage extends Component {
         <ul className="results__list">
           {this.props.images
             ? this.props.images.slice(0, 10).map((value, index) => {
-                return <Result key={index} imageData={value}/>;
+                return <Result key={index} imageData={value} />;
               })
             : null}
         </ul>
