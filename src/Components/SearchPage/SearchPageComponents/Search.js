@@ -5,10 +5,9 @@ import { connect } from "react-redux";
 import { updateImages } from "../../../actions/updateImages";
 import { changeQuery } from "../../../actions/changeQuery";
 import { updateTags } from "../../../actions/updateTags";
-
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
-import { ThreeSixty } from "@material-ui/icons";
+
 class Search extends Component {
   constructor(props) {
     super(props);
@@ -144,7 +143,7 @@ class Search extends Component {
         <input
           className="search__input"
           placeholder="type keyword (min 3 chars)"
-          onChange={(e) => this.filterTags(e.target.value)}
+          onChange={(e) => this.filterTags(e.target.value.toLowerCase())}
           onKeyDown={this.handleEnter}
           value={this.state.searchQuery}
         />
