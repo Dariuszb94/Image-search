@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Search from "../SearchPage/SearchPageComponents/Search";
 import { Result } from "./ResultsComponents/Result";
-
 import { connect } from "react-redux";
 import { updateImages } from "../../actions/updateImages";
 import { changeQuery } from "../../actions/changeQuery";
+
 class ResultsPage extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +30,7 @@ class ResultsPage extends Component {
         <ul className="results__list">
           {this.props.images
             ? this.props.images.slice(0, 10).map((value, index) => {
-                return <Result key={index} imageData={value} />;
+                return <Result key={index} imageData={value}/>;
               })
             : null}
         </ul>

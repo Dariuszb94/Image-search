@@ -40,7 +40,7 @@ export class Result extends Component {
           this.showModal();
         }}
       >
-        <img src={this.props.imageData.urls.small} className="result__img" />
+        <img src={this.props.imageData.urls.small} className="result__img" alt={this.props.imageData.description}/>
         <ul className="result__tags">
           {this.props.imageData
             ? this.props.imageData.tags.map((value, index) => {
@@ -60,6 +60,7 @@ export class Result extends Component {
                   <img
                     className="overlay__author__column__img"
                     src={this.props.imageData.user.profile_image.medium}
+                    alt={this.props.imageData.description}
                   />
                 </div>
                 <div className="overlay__author__column">
@@ -76,6 +77,7 @@ export class Result extends Component {
               <img
                 className="overlay__img"
                 src={this.props.imageData.urls.regular}
+                alt={this.props.imageData.description}
               />
               {this.props.imageData.user.location ? (
                 <div className="overlay__location">
@@ -96,3 +98,5 @@ export class Result extends Component {
     );
   }
 }
+
+

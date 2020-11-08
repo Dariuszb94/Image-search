@@ -114,7 +114,7 @@ class Search extends Component {
       });
   }
   handleEnter(e) {
-    if (e.keyCode == 13 && this.state.searchQuery.length > 2) {
+    if (e.keyCode === 13 && this.state.searchQuery.length > 2) {
       this.props.changeQuery(this.state.searchQuery);
       this.props.history.push("/ResultsPage");
       this.collectTags(1);

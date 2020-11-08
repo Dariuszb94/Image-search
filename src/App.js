@@ -1,7 +1,7 @@
 import "./App.css";
 import { SearchPage } from "./Components/SearchPage/SearchPage";
 import ResultsPage  from "./Components/ResultsPage/ResultsPage";
-import { Route, Switch,withRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 function App({location}) {
   return (
     <div className="App">

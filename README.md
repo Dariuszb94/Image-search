@@ -26,7 +26,6 @@ Project is created with:
 - jQuery: 3.5.1
 - Unsplash-js: 6.3.0
 
-
 ## Setup
 
 To run this project, download a repo, then go to repo folder, open terminal:
