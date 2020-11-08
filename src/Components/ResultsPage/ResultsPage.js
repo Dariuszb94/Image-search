@@ -6,11 +6,6 @@ import { updateImages } from "../../actions/updateImages";
 import { changeQuery } from "../../actions/changeQuery";
 
 class ResultsPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  componentDidUpdate() {}
   render() {
     return (
       <section className="results">
