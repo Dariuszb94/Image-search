@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Search from "../SearchPage/SearchPageComponents/Search";
-import {Result} from "./ResultsComponents/Result";
-
+import { Result } from "./ResultsComponents/Result";
 
 import { connect } from "react-redux";
 import { updateImages } from "../../actions/updateImages";
@@ -11,13 +10,11 @@ class ResultsPage extends Component {
     super(props);
     this.state = {};
   }
-  componentDidUpdate() {
-
-  }
+  componentDidUpdate() {}
   render() {
     return (
       <section className="results">
-        <Search />
+        <Search onResultPage={1} />
         <header className="results__header">{this.props.query}</header>
         <ul className="results__tags">
           {this.props.tags
@@ -31,11 +28,9 @@ class ResultsPage extends Component {
             : null}
         </ul>
         <ul className="results__list">
-        {this.props.images
+          {this.props.images
             ? this.props.images.slice(0, 10).map((value, index) => {
-                return (
-                  <Result key={index} imageData={value}/>
-                );
+                return <Result key={index} imageData={value} />;
               })
             : null}
         </ul>

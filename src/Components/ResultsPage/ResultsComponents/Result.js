@@ -11,26 +11,27 @@ export class Result extends Component {
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
   }
-showModal(){
- 
-  if(!this.state.showModal){
-    $(".result").css("pointer-events","none");
+  showModal() {
+    if (!this.state.showModal) {
+      $(".result").css("pointer-events", "none");
+
+      this.setState(
+        {
+          showModal: true,
+        },
+        () => {
+          $(".overlay__close").css("pointer-events", "auto");
+        }
+      );
+    }
+  }
+  hideModal() {
+    $(".result").css("pointer-events", "auto");
 
     this.setState({
-      showModal: true,
-    },()=>{
-      $(".overlay__close").css("pointer-events","auto");
+      showModal: false,
     });
   }
-
-}
-hideModal(){
-  $(".result").css("pointer-events","auto");
-
-  this.setState({
-    showModal: false,
-  });
-}
   render() {
     return (
       <section
@@ -85,7 +86,7 @@ hideModal(){
               <CloseIcon
                 className="overlay__close"
                 onClick={() => {
-               this.hideModal();
+                  this.hideModal();
                 }}
               />
             </div>

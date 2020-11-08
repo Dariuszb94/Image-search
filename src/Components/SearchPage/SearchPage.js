@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import  Search  from "./SearchPageComponents/Search";
+import Search from "./SearchPageComponents/Search";
 export class SearchPage extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +9,7 @@ export class SearchPage extends Component {
   render() {
     return (
       <section className="search-bg">
-          <h1 className="search__title">Image search</h1>
+        <h1 className="search__title">Image search</h1>
         <Search />
       </section>
     );
